@@ -1,0 +1,18 @@
+version: '2'
+volumes:
+  db.varnerrl-couchdb.data:
+    driver: rancher-nfs
+    external: true
+services:
+  db:
+    image: registry.spin.nersc.gov/varnerrl/mjd-couchdb:24Feb2020
+    cap_drop:
+    - ALL
+    cap_add:
+    - SETUID
+    - SETGID
+    - FOWNER
+    - CHOWN
+    - DAC_OVERRIDE
+    volumes:
+    - db.varnerrl-couchdb.data:/opt/couchdb/data
