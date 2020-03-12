@@ -1,0 +1,5 @@
+# This command initializes a Couchdb >=Couch2.3 database server for single_node operation
+curl -b ~/.MJDBCookieJar -X POST http://localhost/_cluster_setup -H "Content-Type: application/json" -d '{"action":"enable_single_node","bind_address":"0.0.0.0"}'
+#
+# This command causes replication of the mjdbanalysis database from the MJDB master server
+curl -b ~/.MJDBCookieJar -X POST http://localhost/_replicator -H "Content-Type: application/json" -d '{"id":"mjdbanalysis-mjdb", "source":"https://mjdb.phy.ornl.gov/mjdbanalysis","target":"http://localhost/mjdbanalysis","create_target":"true","continuous":"true"}'

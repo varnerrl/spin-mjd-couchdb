@@ -1,10 +1,11 @@
 version: '2'
 volumes:
-  couchdb-data:
-     external: true
+  db.mjd-couchdb.data:
+    driver: rancher-nfs
+    external: true
 services:
   db:
-    image: mjd-couchdb-db
+    image: registry.spin.nersc.gov/varnerrl/mjd-couchdb:v1.0
     cap_drop:
     - ALL
     cap_add:
@@ -14,9 +15,4 @@ services:
     - CHOWN
     - DAC_OVERRIDE
     volumes:
-    - couchdb-data:/opt/couchdb/data/
-#   network_mode: host
-  web:
-    image: mjd-haproxy-web
-    ports:
-    - "80:80"
+    - db.mjd-couchdb.data:/opt/couchdb/data
