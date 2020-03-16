@@ -6,6 +6,7 @@ volumes:
 services:
   db:
     image: registry.spin.nersc.gov/varnerrl/mjd-couchdb:v1.0
+    retain_ip: true
     cap_drop:
     - ALL
     cap_add:
